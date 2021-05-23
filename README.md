@@ -1,4 +1,4 @@
-# go-code-embedding
+# go-code-embedding [![Actions Status](https://github.com/monochromegane/go-code-embedding/workflows/Go/badge.svg)](https://github.com/monochromegane/go-code-embedding/actions)
 
 A tool to embed Go source code into binary using go:embed.
 
