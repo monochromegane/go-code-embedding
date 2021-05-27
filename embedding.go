@@ -1,11 +1,16 @@
 package embedding
 
-import "path/filepath"
+import accessor "github.com/monochromegane/go-embedding-accessor"
 
 func Generate(pkg, outputDir string) error {
-	return writeToFile(
-		filepath.Join(outputDir, "code_embedding.go"),
-		codeTemplates.toString(),
-		data{Package: pkg},
+	return accessor.Generate(
+		pkg,
+		outputDir,
+		"code",
+		generateFiles(),
 	)
+}
+
+func generateFiles() string {
+	return "*.go */**/*.go go.mod go.sum"
 }

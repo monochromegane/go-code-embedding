@@ -4,17 +4,16 @@ import (
 	"bytes"
 	"fmt"
 	"io/ioutil"
-	"path/filepath"
 	"strings"
 	"testing"
 )
 
 func TestListCode(t *testing.T) {
 	buf := &bytes.Buffer{}
-	embed := &embedCode{writer: buf}
+	embed := &embedding{writer: buf}
 	err := embed.list()
 	if err != nil {
-		t.Errorf("embedCode.list should not return error, but %v", err)
+		t.Errorf("embedding.list should not return error, but %v", err)
 	}
 
 	actual := buf.String()
@@ -25,8 +24,6 @@ func TestListCode(t *testing.T) {
 		"embedding_test.go",
 		"go.mod",
 		"go.sum",
-		"template.go",
-		"writer.go",
 	}
 
 	for _, e := range expects {
@@ -38,7 +35,7 @@ func TestListCode(t *testing.T) {
 
 func TestShowCode(t *testing.T) {
 	buf := &bytes.Buffer{}
-	embed := &embedCode{writer: buf}
+	embed := &embedding{writer: buf}
 	embed.list()
 
 	list := strings.Split(buf.String(), "\n")
@@ -48,7 +45,7 @@ func TestShowCode(t *testing.T) {
 			continue
 		}
 		expect := &bytes.Buffer{}
-		code := &embedCode{writer: expect}
+		code := &embedding{writer: expect}
 		code.show(c)
 
 		actual, err := ioutil.ReadFile(c)
@@ -56,7 +53,7 @@ func TestShowCode(t *testing.T) {
 			fmt.Printf("%v\n", err)
 		}
 		if expect.String() != string(actual)+"\n" {
-			t.Errorf("code should equal %s but not equal", filepath.Join("..", c))
+			t.Errorf("code should equal %s but not equal", c)
 		}
 	}
 }
