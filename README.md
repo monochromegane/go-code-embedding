@@ -1,6 +1,7 @@
 # go-code-embedding [![Actions Status](https://github.com/monochromegane/go-code-embedding/workflows/Go/badge.svg)](https://github.com/monochromegane/go-code-embedding/actions)
 
 A tool to embed Go source code into binary using go:embed.
+This is a typical use case for [monochromegane/go-embedding-accessor](https://github.com/monochromegane/go-embedding-accessor).
 
 ## Usage
 
@@ -16,10 +17,10 @@ So, your Go program get {show,list,restore}-code options.
 
 ### List code
 
-`list-codes` list your code.
+`list-code` list your code.
 
 ```sh
-$ my-app --list-codes
+$ my-app --list-code
 app.go
 my-app/main.go
 ```
@@ -39,10 +40,10 @@ func main() {
 
 ### Restore code
 
-`restore-codes` restore your code.
+`restore-code` restore your code.
 
 ```sh
-$ my-app --restore-codes
+$ my-app --restore-code
 ```
 
 You also specify output path by `--restore-path` option.
